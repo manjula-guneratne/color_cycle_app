@@ -1,44 +1,56 @@
 * {
   box-sizing: border-box;
 }
-/* 
-.row{
-    width: 80%;
-    margin: auto;
-} */
 
 /*Three columns that FLEX next to each other*/
 .flex-container {
   display: flex;
   flex-wrap: wrap;
   font-size: 20px;
-  width: 80%;
+  width: 50%;
   border: black 1px solid;
   margin: auto;
   margin-top: 10%;
-  padding-bottom: 5%;
+  padding-bottom: 3%;
 }
 
 /*Left and Right column*/
 .flex-left {
   padding: 10px;
-  flex: 60%;
+  flex: 50%;
+  text-align: center;
 }
 
 /*Middle column*/
 .flex-right {
   padding: 10px;
-  flex: 40%;
-  text-align: center;
+  flex: 50%;
+  text-align: left;
 }
 
+/*Changing color display*/
 .box {
   background-color: lightgray;
-  width: 300px;
-  height: 300px;
+  width: 50%;
+  height: 60%;
   border: 10px solid black;
   padding: 10px;
   margin: auto;
+}
+
+/*Input tag names*/
+.right_lable{
+    font-weight: bold;
+}
+
+input{
+    text-align:center;
+    font-size: medium;
+}
+
+button{
+    font-size: large;
+    padding: 2%;
 }
 
 /*Responsive layout*/
