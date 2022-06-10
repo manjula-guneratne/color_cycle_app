@@ -1,0 +1,37 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+/*Three columns that float next to each other*/
+.column {
+    float: left;
+    padding: 10px;
+}
+
+/*Left and Right column*/
+.column.left {
+    width: 60%;
+}
+
+/*Middle column*/
+.column.right {
+    width: 40%;
+}
+
+/*Clear floats after the columns*/
+.row:after{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/*Responsive layout*/
+@media screen and (max-width: 600px){
+    .column.side, .column.middle{
+        width: 100%;
+    }
+}
