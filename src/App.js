@@ -19,10 +19,10 @@ function App() {
         <input type="text" placeholder="##" maxLength={2}></input>
         <br />
         <span className="right_lable">Hex color inc. rate </span>
-        <input type="text" placeholder="number"></input>
+        <input type="text" placeholder="#######"></input>
         <br />
         <span className="right_lable">Hex color changing rate </span>
-        <input type="text" placeholder="number"></input>
+        <input type="text" placeholder="#######"></input>
         <br />
         <button>Start / Stop</button>
       </div>
