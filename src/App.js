@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function App() {
   // For the timer
@@ -7,11 +7,12 @@ function App() {
   const [intervalId, setIntervalId] = useState(0);
 
   const [colorValue, setColorValue] = useState({
-    firstColorValues: "00",
-    secondColorValues: "00",
-    thirdColorValues: "00",
+    firstColorValues: "FF",
+    secondColorValues: "FF",
+    thirdColorValues: "FF",
     colorIncRate: "10", //SETTING the default colour incremental rate
     colorChangeRate: "1000", //SETTING the default colour Changing rate
+    hexColour: "00AA00",
   });
 
   const getInputValue = (e) => {
@@ -28,10 +29,10 @@ function App() {
     secondColorValues: + ${colorValue.secondColorValues}
     thirdColorValues: + ${colorValue.thirdColorValues}
     colorIncRate: + ${colorValue.colorIncRate}
-    colorChangeRate: + ${colorValue.colorChangeRate}`);
+    colorChangeRate: + ${colorValue.colorChangeRate}
+    hexcolour: + ${colorValue.hexColour}`);
 
     // This is the timer stuff
-
     if (intervalId) {
       clearInterval(intervalId);
       setIntervalId(0);
@@ -42,6 +43,24 @@ function App() {
       setCount((prevCount) => prevCount + parseInt(colorValue.colorIncRate));
     }, colorValue.colorChangeRate);
     setIntervalId(newInteralId);
+
+    // Note: The color only changes when the 'Start' button is clicked.
+    colorCombined();
+  };
+
+  let colorCombined = () => {
+    //Combined HEX colour value
+    const newHexColour =
+      colorValue.firstColorValues +
+      colorValue.secondColorValues +
+      colorValue.thirdColorValues;
+
+    setColorValue({...colorValue, hexColour: newHexColour});
+
+    console.log("New hex values: " + colorValue.hexColour);
+
+    return true;
+    // return "#" + colorValue.hexColour;
   };
 
   return (
@@ -51,7 +70,11 @@ function App() {
           <h5>The component has been rendered for {count} seconds</h5>
         </div>
         <h2>Colour Cycle App</h2>
-        <p className="box"></p>
+        <p
+          className="box"
+          name="boxId"
+          style={{ backgroundColor: "#" + colorValue.hexColour }}
+        />
       </div>
       <div className="flex-right">
         <h4>Starting Hex color breakdown</h4>
@@ -86,7 +109,7 @@ function App() {
         ></input>
         <br />
         <br />
-        <span className="right_lable">Hex color inc. rate/sec </span>
+        <span className="right_lable">Hex color inc.rate/sec </span>
         <input
           type="text"
           placeholder="#######"
