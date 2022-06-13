@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
   // For the timer
@@ -55,13 +55,19 @@ function App() {
       colorValue.secondColorValues +
       colorValue.thirdColorValues;
 
-    setColorValue({...colorValue, hexColour: newHexColour});
+    setColorValue({ ...colorValue, hexColour: newHexColour });
 
     console.log("New hex values: " + colorValue.hexColour);
 
     return true;
     // return "#" + colorValue.hexColour;
   };
+
+    //Everytime the setCount changes (i.e. effected by the colour change rate) this should also be effected
+    useEffect(() => {
+      console.log(`The current value is ${count}`);
+    });
+  
 
   return (
     <div className="flex-container">
