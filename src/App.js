@@ -7,12 +7,12 @@ function App() {
   const [intervalId, setIntervalId] = useState(0);
 
   const [colorValue, setColorValue] = useState({
-    firstColorValues: "FF",
-    secondColorValues: "FF",
-    thirdColorValues: "FF",
-    colorIncRate: "10", //SETTING the default colour incremental rate
+    firstColorValues: "00",
+    secondColorValues: "00",
+    thirdColorValues: "00",
+    colorIncRate: "1000", //SETTING the default colour incremental rate
     colorChangeRate: "1000", //SETTING the default colour Changing rate
-    hexColour: "00AA00",
+    hexColour: "000000",
   });
 
   const getInputValue = (e) => {
@@ -48,33 +48,32 @@ function App() {
     colorCombined();
   };
 
+  // Getting the starting HEX colour
   let colorCombined = () => {
-    //Combined HEX colour value
     const newHexColour =
       colorValue.firstColorValues +
       colorValue.secondColorValues +
       colorValue.thirdColorValues;
 
     setColorValue({ ...colorValue, hexColour: newHexColour });
-
-    console.log("New hex values: " + colorValue.hexColour);
-
-    return true;
-    // return "#" + colorValue.hexColour;
   };
 
-    //Everytime the setCount changes (i.e. effected by the colour change rate) this should also be effected
-    useEffect(() => {
-      console.log(`The current value is ${count}`);
-    });
-  
+  //Everytime the setCount changes (i.e. effected by the colour change rate) this should also be effected
+  useEffect(() => {
+    //Change hex into decimal and increase it
+    let incDecColour =
+      parseInt(colorValue.hexColour, 16) + parseInt(colorValue.colorIncRate);
+    console.log("Increasing dec colour value: ", incDecColour);
+
+    let decIntoHex = incDecColour.toString(16);
+
+    setColorValue({ ...colorValue, hexColour: decIntoHex });
+    console.log("New hex values: " + colorValue.hexColour);
+  }, [count]);
 
   return (
     <div className="flex-container">
       <div className="flex-left">
-        <div>
-          <h5>The component has been rendered for {count} seconds</h5>
-        </div>
         <h2>Colour Cycle App</h2>
         <p
           className="box"
